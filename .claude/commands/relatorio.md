@@ -85,11 +85,35 @@ python3 ~/.claude/skills/meta-ads-ratos/scripts/read.py ads \
 
 ### PASSO 3 — Coletar dados Google Ads (se disponível)
 
-Usar a skill `google-ads-ratos` quando estiver disponível. Puxar:
-- KPIs da conta (gasto, impressões, cliques, conversões, CTR, CPC, CPA)
-- Campanhas ativas com métricas
-- Evolução diária
-- Período anterior para comparativo
+Usar a skill `google-ads-ratos`:
+
+```bash
+# KPIs da conta
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py account \
+  --customer-id XXX --date-range LAST_7_DAYS
+
+# Campanhas
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py campaign \
+  --customer-id XXX --date-range LAST_7_DAYS
+
+# Evolução diária
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py daily \
+  --customer-id XXX --date-range LAST_7_DAYS
+```
+
+### PASSO 3B — Coletar dados GA4 (se disponível)
+
+Usar a skill `ga4-ratos` para dados pós-clique:
+
+```bash
+# Landing pages com bounce rate
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py landing-pages \
+  --property XXX --start-date 7daysAgo --end-date today
+
+# Fontes de tráfego
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py traffic-sources \
+  --property XXX --start-date 7daysAgo --end-date today
+```
 
 ### PASSO 4 — Calcular KPIs
 

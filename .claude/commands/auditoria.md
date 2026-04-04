@@ -78,15 +78,42 @@ python3 ~/.claude/skills/meta-ads-ratos/scripts/read.py ads \
 
 ### PASSO 3 — Coletar dados Google Ads (se disponível)
 
-Usar a skill `google-ads-ratos` (quando estiver disponível):
+Usar a skill `google-ads-ratos`:
 
+```bash
+# Campanhas com métricas (30 dias)
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py campaign \
+  --customer-id XXX --date-range LAST_30_DAYS
+
+# Keywords com Quality Score
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py quality-scores \
+  --customer-id XXX
+
+# Search terms
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py search-terms \
+  --customer-id XXX --date-range LAST_30_DAYS
+
+# Extensões
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py extensions \
+  --customer-id XXX
+
+# Negativas
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py negative-keywords \
+  --customer-id XXX
 ```
-- Campanhas ativas com métricas dos últimos 30 dias
-- Keywords com Quality Score e componentes (relevância, LP, CTR esperado)
-- Search terms com gasto e conversões (30 dias)
-- Extensões de anúncio ativas
-- Configurações de bidding por campanha
-- Impression share e lost impression share (budget vs rank)
+
+### PASSO 3B — Coletar dados GA4 (se disponível)
+
+Usar a skill `ga4-ratos` para dados pós-clique (landing page, bounce rate):
+
+```bash
+# Landing pages com bounce rate e conversões
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py landing-pages \
+  --property XXX --start-date 30daysAgo --end-date today
+
+# Conversões por evento
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py conversions \
+  --property XXX --start-date 30daysAgo --end-date today
 ```
 
 ### PASSO 4 — Calcular KPIs

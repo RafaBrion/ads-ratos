@@ -54,12 +54,46 @@ python3 ~/.claude/skills/meta-ads-ratos/scripts/read.py campaigns \
 
 ### PASSO 2 — Coletar dados Google Ads (se disponível)
 
-Usar a skill `google-ads-ratos` (quando estiver disponível) ou o MCP adloop:
+Usar a skill `google-ads-ratos` para puxar dados:
 
+```bash
+# Insights da conta (últimos 7 dias)
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py account \
+  --customer-id XXX --date-range LAST_7_DAYS
+
+# Insights por campanha
+python3 ~/.claude/skills/google-ads-ratos/scripts/insights.py campaign \
+  --customer-id XXX --date-range LAST_7_DAYS
+
+# Campanhas ativas
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py campaigns \
+  --customer-id XXX
+
+# Quality Scores
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py quality-scores \
+  --customer-id XXX
+
+# Search terms (últimos 7 dias)
+python3 ~/.claude/skills/google-ads-ratos/scripts/read.py search-terms \
+  --customer-id XXX --date-range LAST_7_DAYS
 ```
-Campanhas ativas com métricas dos últimos 7 dias
-Keywords com Quality Score
-Search terms com gasto e conversões
+
+### PASSO 2B — Coletar dados GA4 (se disponível)
+
+Usar a skill `ga4-ratos` para complementar com dados pós-clique:
+
+```bash
+# Overview (sessões, bounce rate, conversões)
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py overview \
+  --property XXX --start-date 7daysAgo --end-date today
+
+# Landing pages (bounce rate por página de destino)
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py landing-pages \
+  --property XXX --start-date 7daysAgo --end-date today
+
+# Campanhas UTM (cruzar com dados de ads)
+python3 ~/.claude/skills/ga4-ratos/scripts/reports.py campaigns \
+  --property XXX --start-date 7daysAgo --end-date today
 ```
 
 ### PASSO 3 — Calcular KPIs
