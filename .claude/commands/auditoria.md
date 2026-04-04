@@ -27,9 +27,11 @@ python3 ~/.claude/skills/meta-ads-ratos/scripts/<script>.py <comando>
 
 ### PASSO 0 — Identificar cliente e plataforma
 
+**OBRIGATÓRIO: SEMPRE perguntar antes de rodar. Nunca assumir.**
+
 1. Ler `contas.yaml` da skill ads-ratos para identificar o cliente
 2. Se houver mais de um cliente, perguntar qual
-3. Perguntar a plataforma: **Meta Ads**, **Google Ads** ou **ambas**
+3. **SEMPRE perguntar a plataforma**: "Qual plataforma? **Meta Ads**, **Google Ads**, **GA4**, ou **todas**?"
 4. Período padrão: últimos 30 dias (com comparativo dos 30 dias anteriores)
 
 ### PASSO 1 — Carregar referências obrigatórias
