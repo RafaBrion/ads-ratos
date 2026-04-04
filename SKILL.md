@@ -37,6 +37,7 @@ O setup:
 | `/ads-ratos diagnostico` | Health Score + KPIs + alertas automáticos | Check diário (5 min) |
 | `/ads-ratos relatorio` | Dashboard HTML com benchmarks BR | Entrega pro cliente (semanal/mensal) |
 | `/ads-ratos auditoria` | Análise profunda com Quality Gates | Revisão mensal |
+| `/ads-ratos historico` | Registra e consulta otimizações e hipóteses | Após cada ação |
 
 ## Cadastro de contas (contas.yaml)
 
