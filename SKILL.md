@@ -23,11 +23,51 @@ Na primeira vez, rodar:
 /ads-ratos setup
 ```
 
-O setup:
+### Fluxo do setup
+
 1. Detecta se o CC-OS RATOS está instalado (lê `_contexto/empresa.md` se existir)
 2. Verifica quais skills de execução estão disponíveis (meta-ads-ratos, google-ads-ratos, ga4-ratos)
-3. Cadastra contas do cliente no `contas.yaml`
-4. Testa conexões
+3. Detecta Python correto (ver seção abaixo)
+4. **Importa contas das skills de execução** (ver fluxo abaixo)
+5. Testa conexões
+
+### Fluxo de importação de contas (passo 4)
+
+O setup DEVE seguir esta ordem pra popular o `contas.yaml`:
+
+**Passo A — Verificar quais sub-skills têm contas cadastradas:**
+```bash
+ls ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null && echo "META_TEM_CONTAS"
+ls ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null && echo "GOOGLE_TEM_CONTAS"
+ls ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null && echo "GA4_TEM_CONTAS"
+```
+
+**Passo B — Perguntar ao usuário antes de puxar:**
+
+Se encontrou pelo menos uma sub-skill com contas, PERGUNTAR:
+> "Encontrei contas já cadastradas nas skills [lista das que encontrou]. Posso puxar os IDs de lá e já preencher o ads-ratos automaticamente?"
+
+- Se o usuário disser **sim**: ir pro Passo C
+- Se o usuário disser **não**: ir pro Passo D
+
+**Passo C — Ler e mesclar os contas.yaml das sub-skills:**
+```bash
+cat ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null
+```
+- Cruzar por nome de cliente (ex: "Fabio Haag" aparece no Google e no GA4 = mesmo cliente)
+- Montar o `contas.yaml` unificado do ads-ratos com Meta + Google + GA4 por cliente
+- Mostrar pro usuário o que montou e perguntar: "Ficou certo? Quer adicionar mais contas via API?"
+- Se sim, ir pro Passo D. Se não, salvar e ir pro passo 5 (testar conexões)
+
+**Passo D — Buscar contas via API (fallback ou complemento):**
+- Buscar contas via API das skills de execução (ex: `read.py accounts`)
+- Mostrar lista pro usuário escolher quais salvar
+- Atualizar o `contas.yaml`
+
+**Importante:** NUNCA chamar a API antes de tentar ler os yamls locais. Os yamls são
+a fonte de verdade (já foram curados pelo usuário). A API é fallback ou complemento.
 
 ## Comandos
 
