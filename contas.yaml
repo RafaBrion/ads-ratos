@@ -30,3 +30,18 @@ clientes:
   #   notas: ""
 
   # -- Teus clientes abaixo --
+
+  pietro-embalagens:
+    nome: "Pietro Embalagens"
+    nicho: "e-commerce"
+    meta:
+      conta_anuncio: "act_376052329794213"
+      pagina_facebook: ""
+      instagram_id: ""
+      instagram_username: ""
+    google:
+      customer_id: ""
+    ga4:
+      property_id: ""
+    moeda: "BRL"
+    notas: "Operação em casal. Rafael: marketing/vendas. Daiana: operação/produtos. Sazonalidade forte: Páscoa, Natal, Dia das Mães."
