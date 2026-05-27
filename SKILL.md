@@ -37,9 +37,9 @@ O setup DEVE seguir esta ordem pra popular o `contas.yaml`:
 
 **Passo A — Verificar quais sub-skills têm contas cadastradas:**
 ```bash
-ls ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null && echo "META_TEM_CONTAS"
-ls ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null && echo "GOOGLE_TEM_CONTAS"
-ls ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null && echo "GA4_TEM_CONTAS"
+ls ~/.Codex/skills/meta-ads-ratos/contas.yaml 2>/dev/null && echo "META_TEM_CONTAS"
+ls ~/.Codex/skills/google-ads-ratos/contas.yaml 2>/dev/null && echo "GOOGLE_TEM_CONTAS"
+ls ~/.Codex/skills/ga4-ratos/contas.yaml 2>/dev/null && echo "GA4_TEM_CONTAS"
 ```
 
 **Passo B — Perguntar ao usuário antes de puxar:**
@@ -52,9 +52,9 @@ Se encontrou pelo menos uma sub-skill com contas, PERGUNTAR:
 
 **Passo C — Ler e mesclar os contas.yaml das sub-skills:**
 ```bash
-cat ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null
-cat ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null
-cat ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null
+cat ~/.Codex/skills/meta-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.Codex/skills/google-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.Codex/skills/ga4-ratos/contas.yaml 2>/dev/null
 ```
 - Cruzar por nome de cliente (ex: "Fabio Haag" aparece no Google e no GA4 = mesmo cliente)
 - Montar o `contas.yaml` unificado do ads-ratos com Meta + Google + GA4 por cliente
@@ -83,7 +83,7 @@ a fonte de verdade (já foram curados pelo usuário). A API é fallback ou compl
 
 **Arquivo:** `contas.yaml` (na raiz da skill)
 
-Antes de executar qualquer comando, o Claude DEVE ler este arquivo para resolver
+Antes de executar qualquer comando, o Codex DEVE ler este arquivo para resolver
 nomes de clientes para IDs de conta.
 
 Se não houver contas cadastradas, guiar o setup.
@@ -97,13 +97,13 @@ Se não houver contas cadastradas, guiar o setup.
 | `references/benchmarks-br.md` | Diagnóstico, relatório e auditoria (benchmarks por nicho) |
 | `references/quality-gates.md` | Auditoria e diagnóstico |
 
-O Claude DEVE ler o arquivo de referência relevante ANTES de executar o comando. Em QUALQUER análise de conta Meta Ads em 2025-2026, o `andromeda-playbook.md` é leitura obrigatória, porque a lógica de entrega da Meta mudou completamente após outubro/2025 e aplicar regras antigas (fragmentar ad sets, testar muitos públicos, 3-6 criativos por conjunto) leva a diagnósticos errados.
+O Codex DEVE ler o arquivo de referência relevante ANTES de executar o comando. Em QUALQUER análise de conta Meta Ads em 2025-2026, o `andromeda-playbook.md` é leitura obrigatória, porque a lógica de entrega da Meta mudou completamente após outubro/2025 e aplicar regras antigas (fragmentar ad sets, testar muitos públicos, 3-6 criativos por conjunto) leva a diagnósticos errados.
 
 ## Aprendizados (memória persistente)
 
-**Arquivo:** `aprendizados.md` (na raiz da skill, `~/.claude/skills/ads-ratos/aprendizados.md`)
+**Arquivo:** `aprendizados.md` (na raiz da skill, `~/.Codex/skills/ads-ratos/aprendizados.md`)
 
-O Claude DEVE:
+O Codex DEVE:
 1. **Ler `aprendizados.md` no início de QUALQUER comando** (diagnóstico, relatório, auditoria)
 2. **Quando o usuário corrigir algo**, perguntar: "Quer que eu registre isso nos aprendizados pra não esquecer nas próximas vezes?"
 3. **Quando o usuário pedir** ("lembra disso", "registra", "anota"), registrar imediatamente
@@ -137,7 +137,7 @@ Se `NONE`: orientar o usuário a instalar o SDK (`pip3 install facebook-business
 
 Depois de detectar, SEMPRE usar esse Python pra todos os scripts da sessão:
 ```bash
-$PYTHON ~/.claude/skills/meta-ads-ratos/scripts/read.py accounts
+$PYTHON ~/.Codex/skills/meta-ads-ratos/scripts/read.py accounts
 ```
 
 **Por que isso é necessário:** no Mac existem dois Pythons (system e Homebrew).
@@ -150,17 +150,17 @@ Antes de executar, verificar quais skills estão disponíveis:
 
 ```bash
 # Meta Ads
-ls ~/.claude/skills/meta-ads-ratos/SKILL.md 2>/dev/null && echo "META_OK"
+ls ~/.Codex/skills/meta-ads-ratos/SKILL.md 2>/dev/null && echo "META_OK"
 
 # Google Ads
-ls ~/.claude/skills/google-ads-ratos/SKILL.md 2>/dev/null && echo "GOOGLE_OK"
+ls ~/.Codex/skills/google-ads-ratos/SKILL.md 2>/dev/null && echo "GOOGLE_OK"
 
 # GA4
-ls ~/.claude/skills/ga4-ratos/SKILL.md 2>/dev/null && echo "GA4_OK"
+ls ~/.Codex/skills/ga4-ratos/SKILL.md 2>/dev/null && echo "GA4_OK"
 ```
 
 Se nenhuma skill estiver instalada, orientar:
-- Meta Ads: `git clone https://github.com/duduesh/meta-ads-ratos ~/.claude/skills/meta-ads-ratos`
+- Meta Ads: `git clone https://github.com/duduesh/meta-ads-ratos ~/.Codex/skills/meta-ads-ratos`
 - Google Ads: (em breve)
 - GA4: (em breve)
 
