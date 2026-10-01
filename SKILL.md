@@ -96,6 +96,7 @@ Se não houver contas cadastradas, guiar o setup.
 | `references/metricas-painel.md` | Diagnóstico de conta, análise de anúncio, troubleshooting, setup de painel do Gerenciador. Contém benchmarks BR, painel de colunas recomendado e fluxo diário de leitura de métricas |
 | `references/benchmarks-br.md` | Diagnóstico, relatório e auditoria (benchmarks por nicho) |
 | `references/quality-gates.md` | Auditoria e diagnóstico |
+| `references/playbooks-causa-raiz.md` | Google Ads: rodar sempre que um Kill Rule disparar ou uma métrica cair, ANTES de decidir a ação — acha se é orçamento, ad rank, tracking quebrado ou queda real de tráfego |
 
 O Codex DEVE ler o arquivo de referência relevante ANTES de executar o comando. Em QUALQUER análise de conta Meta Ads em 2025-2026, o `andromeda-playbook.md` é leitura obrigatória, porque a lógica de entrega da Meta mudou completamente após outubro/2025 e aplicar regras antigas (fragmentar ad sets, testar muitos públicos, 3-6 criativos por conjunto) leva a diagnósticos errados.
 

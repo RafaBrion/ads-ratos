@@ -69,7 +69,7 @@ Exemplo: não adianta melhorar Quality Score de uma campanha que não converte.
 | QS < 5 + LP ruim | Landing page lenta ou irrelevante | Otimizar velocidade e relevância da LP |
 | Search terms irrelevantes | Faltam negativas | Adicionar negativas (exata ou frase) |
 | CPA alto em Broad Match | Broad sem Smart Bidding | NUNCA usar Broad Match sem Smart Bidding |
-| Impression Share < 20% | Orçamento ou bid baixo | Aumentar orçamento ou melhorar QS |
+| Impression Share < 20% | Orçamento ou bid baixo | Rodar Playbook 2 de `playbooks-causa-raiz.md` pra achar qual dos dois antes de agir |
 | Muitas conversões em marca | Canibalização orgânico | Reduzir bid em marca, investir em genérica |
 
 ---
