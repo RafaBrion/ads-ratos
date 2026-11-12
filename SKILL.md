@@ -37,9 +37,9 @@ O setup DEVE seguir esta ordem pra popular o `contas.yaml`:
 
 **Passo A — Verificar quais sub-skills têm contas cadastradas:**
 ```bash
-ls ~/.Codex/skills/meta-ads-ratos/contas.yaml 2>/dev/null && echo "META_TEM_CONTAS"
-ls ~/.Codex/skills/google-ads-ratos/contas.yaml 2>/dev/null && echo "GOOGLE_TEM_CONTAS"
-ls ~/.Codex/skills/ga4-ratos/contas.yaml 2>/dev/null && echo "GA4_TEM_CONTAS"
+ls ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null && echo "META_TEM_CONTAS"
+ls ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null && echo "GOOGLE_TEM_CONTAS"
+ls ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null && echo "GA4_TEM_CONTAS"
 ```
 
 **Passo B — Perguntar ao usuário antes de puxar:**
@@ -52,9 +52,9 @@ Se encontrou pelo menos uma sub-skill com contas, PERGUNTAR:
 
 **Passo C — Ler e mesclar os contas.yaml das sub-skills:**
 ```bash
-cat ~/.Codex/skills/meta-ads-ratos/contas.yaml 2>/dev/null
-cat ~/.Codex/skills/google-ads-ratos/contas.yaml 2>/dev/null
-cat ~/.Codex/skills/ga4-ratos/contas.yaml 2>/dev/null
+cat ~/.claude/skills/meta-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.claude/skills/google-ads-ratos/contas.yaml 2>/dev/null
+cat ~/.claude/skills/ga4-ratos/contas.yaml 2>/dev/null
 ```
 - Cruzar por nome de cliente (ex: "Fabio Haag" aparece no Google e no GA4 = mesmo cliente)
 - Montar o `contas.yaml` unificado do ads-ratos com Meta + Google + GA4 por cliente
@@ -102,7 +102,7 @@ O Codex DEVE ler o arquivo de referência relevante ANTES de executar o comando.
 
 ## Aprendizados (memória persistente)
 
-**Arquivo:** `aprendizados.md` (na raiz da skill, `~/.Codex/skills/ads-ratos/aprendizados.md`)
+**Arquivo:** `aprendizados.md` (na raiz da skill, `~/.claude/skills/ads-ratos/aprendizados.md`)
 
 O Codex DEVE:
 1. **Ler `aprendizados.md` no início de QUALQUER comando** (diagnóstico, relatório, auditoria)
@@ -138,7 +138,7 @@ Se `NONE`: orientar o usuário a instalar o SDK (`pip3 install facebook-business
 
 Depois de detectar, SEMPRE usar esse Python pra todos os scripts da sessão:
 ```bash
-$PYTHON ~/.Codex/skills/meta-ads-ratos/scripts/read.py accounts
+$PYTHON ~/.claude/skills/meta-ads-ratos/scripts/read.py accounts
 ```
 
 **Por que isso é necessário:** no Mac existem dois Pythons (system e Homebrew).
@@ -151,17 +151,17 @@ Antes de executar, verificar quais skills estão disponíveis:
 
 ```bash
 # Meta Ads
-ls ~/.Codex/skills/meta-ads-ratos/SKILL.md 2>/dev/null && echo "META_OK"
+ls ~/.claude/skills/meta-ads-ratos/SKILL.md 2>/dev/null && echo "META_OK"
 
 # Google Ads
-ls ~/.Codex/skills/google-ads-ratos/SKILL.md 2>/dev/null && echo "GOOGLE_OK"
+ls ~/.claude/skills/google-ads-ratos/SKILL.md 2>/dev/null && echo "GOOGLE_OK"
 
 # GA4
-ls ~/.Codex/skills/ga4-ratos/SKILL.md 2>/dev/null && echo "GA4_OK"
+ls ~/.claude/skills/ga4-ratos/SKILL.md 2>/dev/null && echo "GA4_OK"
 ```
 
 Se nenhuma skill estiver instalada, orientar:
-- Meta Ads: `git clone https://github.com/duduesh/meta-ads-ratos ~/.Codex/skills/meta-ads-ratos`
+- Meta Ads: `git clone https://github.com/duduesh/meta-ads-ratos ~/.claude/skills/meta-ads-ratos`
 - Google Ads: (em breve)
 - GA4: (em breve)
 
